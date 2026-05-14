@@ -35,6 +35,16 @@ const state = {
 }
 
 
+function changeStat(category, stat, amount) {
+
+  if (!state[category] || state[category][stat] == undefined) {
+    console.error("Invalid stat: ", category, stat);
+    return;
+  }
+  state[category][stat] += amount;
+}
+
+
  function update() {
   document.getElementById("money").textContent = state.money;
   document.getElementById("stability").textContent = state.stability;
