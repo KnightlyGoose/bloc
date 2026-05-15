@@ -62,13 +62,16 @@ function changeStat(category, stat, amount) {
 
 
  function update() {
-  document.getElementById("money").textContent = state.resources.money;
-  document.getElementById("stability").textContent = state.domestic.stability;
-  document.getElementById("oil").textContent = state.resources.oil;
-  document.getElementById("material").textContent = state.resources.material;
-  document.getElementById("goods").textContent = state.resources.goods;
+  
+  for (const category in state) {
+    for (const stat in state[category]) {
+      const element = document.getElementById(stat);
 
-  checkLoss();
+      if (element) {
+        element.textContent = state[category][stat];
+      }
+    }
+  }
   
  
 }
