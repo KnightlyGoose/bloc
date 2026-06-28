@@ -39,3 +39,8 @@
 
 # debug information files
 *.dwo
+
+
+*.html
+node_modules/
+.DS_Store
