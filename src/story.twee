@@ -1,0 +1,159 @@
+:: StoryData
+{
+    "ifid": "30afbd9c-c06b-4a69-8700-68912e4c57fb",
+    "format": "SugarCube",
+    "format-version": "2.36.1",
+    "start": "Start"
+}
+
+:: StoryTitle
+Bloc
+
+
+:: StoryInit
+<<set $govType = "democracy_real">>
+<<set $country = "Republic of Nowhere">>
+<<set $name = "Nobody">>
+<<set $money = 100>>
+<<set $approval = 50>>
+<<set $stability = 50>>
+<<set $corruption = 5>>
+
+<<set $military_loyalty = 50>>
+<<set $military_strength = 25>>
+<<set $military_weapons = 10>>
+<<set $military_training = 50>>
+
+<<set $oil = 10>>
+<<set $manufacturedGoods = 0>>
+<<set $factories = 0>>
+<<set $rawMaterial = 3>>
+
+<<set $eagleRelations = 0>>
+<<set $bearRelations = 0>>
+
+<<set $uranium = 0>>
+
+<<switch $govType>>
+<<case "democracy_real">>
+    <<set $title = "President">>
+<<case "democracy_fake">>
+    <<set $title = "President">>
+<<case "theocracy">>
+    <<set $title = "High Priest">>
+<<case "one_party_state">>
+    <<set $title = "Premier">>
+<<case "military_junta">>
+    <<set $title = "General">>
+<<case "autocracy">>
+    <<set $title = "Dear Leader">>
+<</switch>>
+
+
+
+:: Start 
+Country name:  <<textbox "$country" "">>
+
+Leader name: <<textbox "$name" "Nobody">>
+
+Choose your government type:
+<<radiobutton "$govType" "democracy_real">> Democracy
+<<radiobutton "$govType" "democracy_fake">> "Democracy"
+<<radiobutton "$govType" "theocracy">> Theocracy
+<<radiobutton "$govType" "one_party_state">> Single Party System
+<<radiobutton "$govType" "military_junta">> Military Junta
+<<radiobutton "$govType" "autocracy">> Dictatorship
+
+Choose a economic system:
+<<radiobutton "$capitalism" 75>> Free Market
+<<radiobutton "$capitalism" 50>> Mixed System
+<<radiobutton "$capitalism" 25>> State-led
+
+[[Main]] 
+
+
+
+::Main
+This is the main screen, which will hold the map and your stats.
+
+MAP
+
+Your flag.
+
+$country
+$title $name
+
+
+Stats
+
+Go to:
+[[News]]
+[[Domestic]]
+[[Economy]]
+[[Military]]
+[[Market]]
+[[Foreign]]
+
+
+::News
+/*<<set $currentEvent = setup.events[0]>>
+!! <<= $currentEvent.title>>
+
+<<= $currentEvent.text>>
+
+<<for _choice range $currentEvent.choices>>
+* <<link _choice.text>>
+    <<run _choice.effect()>>
+    <<goto "Main">>
+<</link>>
+<</for>>*/
+
+::Domestic
+Actions here affect your citizens and government
+
+::Economy
+Actions here affect your economy
+
+::Military
+
+Military Strength: <<= $military_strength>>k
+
+Training: <<if $militaryStrength < 20>>
+Rabble
+<<elseif $militaryStrength < 40>>
+Untrained
+<<elseif $militaryStrength < 60>>
+Trained
+<<elseif $militaryStrength < 80>>
+Disciplined
+<<else>>
+Elite
+<</if>>
+
+Weapons: <<if $weapons < 20>>19th Century
+<<elseif $weapons < 40>>World War I
+<<elseif $weapons < 60>>World War II
+<<elseif $weapons < 80>>Cold War
+<<elseif $weapons < 90>>Late Cold War
+<<else>>Almost Modern
+<</if>>
+
+Loyalty:
+<<if $militaryLoyalty < 20>>
+Mutinous
+<<elseif $militaryLoyalty < 40>>
+Questionable
+<<elseif $militaryLoyalty < 60>>
+Loyal
+<<elseif $militaryLoyalty < 80>>
+Dedicated
+<<else>>
+Fanatical
+<</if>>
+Actions here affect your military
+
+::Market
+Buy and sell materials
+
+::Foreign
+Beg for foreign aid here

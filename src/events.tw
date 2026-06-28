@@ -1,0 +1,28 @@
+:: StoryInit [script]
+setup.events = [
+    {
+
+        /*Copy this one to make new events*/
+
+        id: "generic",
+
+        title: "generic",
+        text: "Something happened in some city somewhere!",
+        choices: [
+            {
+                text: "do something",
+                effect: function() {
+
+                }
+            },
+
+            {
+                text: "do something else",
+                effect: function() {
+                    
+                }
+            }
+        ]
+}
+
+];
